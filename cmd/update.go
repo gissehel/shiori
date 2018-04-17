@@ -10,7 +10,7 @@ import (
 
 	"github.com/RadhiFadlillah/go-readability"
 	"github.com/RadhiFadlillah/shiori/model"
-	"github.com/gosuri/uiprogress"
+	// "github.com/gosuri/uiprogress"
 	"github.com/spf13/cobra"
 )
 
@@ -135,15 +135,15 @@ func updateBookmarks(indices []string, base model.Bookmark, offline, overwrite b
 	// If not offline, fetch articles from internet
 	if !offline {
 		fmt.Println("Fetching new bookmarks data")
-		uiprogress.Start()
-		bar := uiprogress.AddBar(len(bookmarks)).AppendCompleted().PrependElapsed()
+		// uiprogress.Start()
+		// bar := uiprogress.AddBar(len(bookmarks)).AppendCompleted().PrependElapsed()
 
 		for i, book := range bookmarks {
 			waitGroup.Add(1)
 
 			go func(pos int, book model.Bookmark) {
 				defer func() {
-					bar.Incr()
+					// bar.Incr()
 					waitGroup.Done()
 				}()
 
@@ -171,7 +171,7 @@ func updateBookmarks(indices []string, base model.Bookmark, offline, overwrite b
 		time.Sleep(1 * time.Second)
 		waitGroup.Wait()
 
-		uiprogress.Stop()
+		// uiprogress.Stop()
 		fmt.Println("\nSaving new data")
 	}
 
